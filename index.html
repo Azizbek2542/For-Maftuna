@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>С Днём Рождения, сестрёнка!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffe4e6, #fff7ed);
+      overflow-x: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to   {opacity: 1; transform: scale(1);}
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.8; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+    @keyframes rainbow {
+      0% {color: red;}
+      20% {color: orange;}
+      40% {color: yellow;}
+      60% {color: green;}
+      80% {color: blue;}
+      100% {color: violet;}
+    }
+    .fade-in { animation: fadeIn 1s ease-out forwards; }
+    .float { animation: float 3s ease-in-out infinite; }
+    .sparkle { animation: sparkle 1.5s infinite ease-in-out; }
+    .rainbow-text { animation: rainbow 5s linear infinite; }
+    .gradient-text {
+      background: linear-gradient(to right, #f472b6, #facc15, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: sparkle 3s infinite ease-in-out;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #fb7185;
+      transform: rotate(45deg);
+      opacity: 0.6;
+      animation: float 6s ease-in-out infinite;
+    }
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #fb7185;
+      border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #facc15;
+      animation: confetti-fall 5s linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes confetti-fall {
+      0% { transform: translateY(-100px) rotate(0); }
+      100% { transform: translateY(100vh) rotate(720deg); }
+    }
+    .firework {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: gold;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+    }
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(6); opacity: 0; }
+    }
+    .mt-10 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative">
+  <div class="heart" style="top: 5%; left: 10%; animation-delay: 1s;"></div>
+  <div class="heart" style="top: 30%; left: 80%; animation-delay: 2s;"></div>
+  <div class="heart" style="top: 60%; left: 40%; animation-delay: 3s;"></div>
+
+  <script>
+    for (let i = 0; i < 150; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * window.innerWidth + 'px';
+      confetti.style.backgroundColor = ['#f472b6', '#facc15', '#38bdf8', '#4ade80'][Math.floor(Math.random() * 4)];
+      confetti.style.animationDelay = (Math.random() * 5) + 's';
+      document.body.appendChild(confetti);
+    }
+  </script>
+
+  <div id="intro" class="text-center space-y-4 z-10 fade-in">
+    <h1 class="text-4xl md:text-5xl font-bold gradient-text animate-bounce">Нажми, чтобы раскрыть сюрприз ✨</h1>
+    <button id="openBtn" class="px-8 py-4 rounded-full bg-yellow-400 hover:bg-yellow-500 text-purple-800 text-xl font-semibold shadow-lg transition focus:outline-none focus:ring-4 focus:ring-yellow-200">Открыть открытку</button>
+  </div>
+
+  <div id="card" class="hidden max-w-3xl bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl p-10 fade-in text-center z-10">
+    <h2 class="text-5xl font-extrabold gradient-text mb-4 animate-pulse">С Днём Рождения, сестрёнка!</h2>
+    <p class="text-2xl gradient-text mb-6 sparkle">Тебе 11 лет!</p>
+    <p class="text-lg leading-relaxed rainbow-text mb-6">
+      <span class="hover:scale-110 transition-transform duration-300 block">🌸 Сестрёнка милая моя,</span>
+      <span class="hover:scale-110 transition-transform duration-300 block">Ты — как улыбка солнца дня!</span>
+      <span class="hover:scale-110 transition-transform duration-300 block">Пусть счастьем светятся глаза,</span>
+      <span class="hover:scale-110 transition-transform duration-300 block">И сбудется мечта твоя!</span><br>
+      <span class="hover:scale-110 transition-transform duration-300 block">🌼 Пусть доброта цветёт, как сад,</span>
+      <span class="hover:scale-110 transition-transform duration-300 block">Пусть знания легко придут,</span>
+      <span class="hover:scale-110 transition-transform duration-300 block">Пусть каждый день и каждый час</span>
+      <span class="hover:scale-110 transition-transform duration-300 block">Тебе лишь радость принесут!</span>
+    </p>
+    <p class="italic text-right text-pink-600 text-lg gradient-text">С любовью, от брата Азизбека 💖</p>
+    <div class="mt-10">
+      <h3 class="text-2xl font-bold text-purple-700">🎮 Мини-игра: Поймай сердечки!</h3>
+      <canvas id="gameCanvas" width="300" height="400" class="mt-4 border-4 border-pink-300 rounded-xl bg-pink-50"></canvas>
+      <p id="score" class="mt-2 text-xl text-green-600">Очки: 0</p>
+    </div>
+  </div>
+
+  <script>
+    const btn   = document.getElementById('openBtn');
+    const intro = document.getElementById('intro');
+    const card  = document.getElementById('card');
+
+    btn.addEventListener('click', () => {
+      intro.classList.add('hidden');
+      card.classList.remove('hidden');
+      launchFireworks();
+    });
+
+    function launchFireworks() {
+      for (let i = 0; i < 25; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'firework';
+        spark.style.left = Math.random() * window.innerWidth + 'px';
+        spark.style.top = Math.random() * window.innerHeight + 'px';
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 1000);
+      }
+    }
+
+    // Мини-игра
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+    let score = 0;
+    let hearts = [];
+
+    function drawHeart(x, y) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(Math.PI / 4);
+      ctx.fillStyle = "#f472b6";
+      ctx.fillRect(-5, -5, 10, 10);
+      ctx.beginPath();
+      ctx.arc(0, -5, 5, 0, Math.PI, true);
+      ctx.arc(-5, 0, 5, 0, Math.PI, true);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function spawnHeart() {
+      hearts.push({ x: Math.random() * 280, y: -10 });
+    }
+
+    function updateGame() {
+      ctx.clearRect(0, 0, 300, 400);
+      hearts.forEach((h, index) => {
+        h.y += 2;
+        drawHeart(h.x, h.y);
+        if (h.y > 400) hearts.splice(index, 1);
+      });
+    }
+
+    canvas.addEventListener("click", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      hearts.forEach((h, i) => {
+        if (x > h.x - 10 && x < h.x + 10 && y > h.y - 10 && y < h.y + 10) {
+          score++;
+          hearts.splice(i, 1);
+          document.getElementById("score").innerText = "Очки: " + score;
+        }
+      });
+    });
+
+    setInterval(spawnHeart, 1000);
+    setInterval(updateGame, 30);
+  </script>
+</body>
+</html>
